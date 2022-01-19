@@ -1,0 +1,2 @@
+docker exec local_api_1 diesel migration $1 $2 $3
+sh ./clear_permission
