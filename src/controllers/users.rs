@@ -1,14 +1,11 @@
 use crate::db;
-use actix_web::{HttpRequest, HttpResponse};
+use actix_web::{HttpRequest, HttpResponse, Responder, web, Result};
 
-pub fn index(_req: HttpRequest) -> HttpResponse {
-    let users = db::user::find_all();
-    let body = serde_json::to_string(&users).unwrap();
-    HttpResponse::Ok()
-        .content_type("application/json")
-        .body(body)
+pub async fn index(_req: HttpRequest) -> Result<impl Responder> {
+    let users = web::block(move || db::user::find_all()).await?;
+    Ok(HttpResponse::Ok().json(users))
 }
 
-pub fn add(_req: HttpRequest) -> HttpResponse {
+pub async fn add(_req: HttpRequest) -> impl Responder {
     HttpResponse::Ok().body("/users/add")
 }

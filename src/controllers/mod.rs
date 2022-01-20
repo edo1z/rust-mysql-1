@@ -4,6 +4,6 @@ pub mod categories;
 pub mod posts;
 pub mod users;
 
-pub fn index(_req: HttpRequest) -> HttpResponse {
+pub async fn index(_req: HttpRequest) -> HttpResponse {
     HttpResponse::Ok().body("Hello")
 }
