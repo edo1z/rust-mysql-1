@@ -3,6 +3,8 @@ use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
+pub mod category;
+pub mod post;
 pub mod user;
 
 pub fn connect_db() -> MysqlConnection {
