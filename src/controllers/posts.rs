@@ -7,4 +7,3 @@ pub fn index(_req: HttpRequest) -> HttpResponse {
 pub fn add(_req: HttpRequest) -> HttpResponse {
     HttpResponse::Ok().body("/posts/add")
 }
-

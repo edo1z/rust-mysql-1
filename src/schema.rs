@@ -1,15 +1,15 @@
 table! {
     categories (id) {
-        id -> Integer,
+        id -> Unsigned<Integer>,
         name -> Varchar,
     }
 }
 
 table! {
     posts (id) {
-        id -> Integer,
-        user_id -> Integer,
-        category_id -> Integer,
+        id -> Unsigned<Integer>,
+        user_id -> Unsigned<Integer>,
+        category_id -> Unsigned<Integer>,
         title -> Varchar,
         content -> Text,
     }
@@ -17,18 +17,14 @@ table! {
 
 table! {
     users (id) {
-        id -> Integer,
+        id -> Unsigned<Integer>,
         name -> Varchar,
         msg -> Nullable<Varchar>,
-        age -> Nullable<Integer>,
+        age -> Nullable<Unsigned<Integer>>,
     }
 }
 
 joinable!(posts -> categories (category_id));
 joinable!(posts -> users (user_id));
 
-allow_tables_to_appear_in_same_query!(
-    categories,
-    posts,
-    users,
-);
+allow_tables_to_appear_in_same_query!(categories, posts, users,);
